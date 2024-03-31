@@ -1,2 +1,2 @@
 # Chroma
- Discord bot to modify text
+ Discord bot that modifies text
