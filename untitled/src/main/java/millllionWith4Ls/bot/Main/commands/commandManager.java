@@ -38,6 +38,7 @@ public class commandManager extends ListenerAdapter{
                 String modifierFour;
                 String modifierOne = getOption("modifier_one");
                 try{
+
                     modifierTwo = getOption("modifier_two");
                 }catch(NullPointerException e){
                     modifierTwo = "no_modifier";}
@@ -49,7 +50,6 @@ public class commandManager extends ListenerAdapter{
                     modifierFour = getOption("modifier_four");
                 }catch(NullPointerException e){
                     modifierFour = "no_modifier";}
-
                 event.reply(cleanUp.modify(textOption,modifierOne,modifierTwo,modifierThree,modifierFour)).queue();
             }
         }
@@ -96,7 +96,5 @@ public class commandManager extends ListenerAdapter{
         commandData.add(Commands.slash("modify","Generate text with a specific modifier")
                 .addOptions(modDescription,modifierOptionOne,modifierOptionTwo,modifierOptionThree,modifierOptionFour));
         event.getGuild().updateCommands().addCommands(commandData).queue();
-    }
-    public static void main(String[] args) {
     }
 }

@@ -34,18 +34,23 @@ public class cleanUp {
         }
         return rColor;
     }
-    private static String mainModifier(final String msg, final String modifier) {
+    private static String mainModifier(String msg, String modifier) {
         return switch (modifier.toLowerCase()) {
             case "bold" -> "**" + msg + "**";
             case "italic" -> "*" + msg + "*";
-            case "strike" -> "~~" + msg + "~~";
-            case "under" -> "__" + msg + "__";
+            case "strikethrough" -> "~~" + msg + "~~";
+            case "underline" -> "__" + msg + "__";
             default -> msg;
         };
     }
-    public static String modify(String base,  final String... modifiers) {
-        for (String modifier: modifiers)
-            base = mainModifier(base, modifier);
-        return base;
+    public static String modify(String msg, String... modifiers) {
+        StringBuilder mods = new StringBuilder();
+        for (String modifier: modifiers){
+            if(!mods.toString().contains(modifier)){
+                msg = mainModifier(msg, modifier);
+            }
+            mods.append(modifier);
+        }
+        return msg;
     }
 }
