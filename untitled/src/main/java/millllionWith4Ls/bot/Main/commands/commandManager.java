@@ -95,6 +95,6 @@ public class commandManager extends ListenerAdapter{
                 .addOptions(colorDescription,colorOption,backgroundColorOption));
         commandData.add(Commands.slash("modify","Generate text with a specific modifier")
                 .addOptions(modDescription,modifierOptionOne,modifierOptionTwo,modifierOptionThree,modifierOptionFour));
-        event.getGuild().updateCommands().addCommands(commandData).queue();
+        event.getJDA().updateCommands().addCommands(commandData).queue();
     }
 }
