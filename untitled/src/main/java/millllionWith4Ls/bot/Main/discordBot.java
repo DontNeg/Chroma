@@ -11,20 +11,14 @@ import javax.security.auth.login.LoginException;
 
 public class discordBot {
 
-    private final ShardManager shardManager;
-    private final Dotenv config;
-
-    public Dotenv getConfig() {return config;}
-    public ShardManager getShardManager() {return shardManager;}
-
-    public discordBot() throws LoginException{
-        config = Dotenv.configure().load();
+    public discordBot() {
+        Dotenv config = Dotenv.configure().load();
         String token = config.get("TOKEN");
         DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
         builder.setStatus(OnlineStatus.ONLINE);
         builder.enableIntents(GatewayIntent.MESSAGE_CONTENT, GatewayIntent.DIRECT_MESSAGE_REACTIONS,GatewayIntent.DIRECT_MESSAGES,GatewayIntent.DIRECT_MESSAGE_TYPING);
         builder.setActivity(Activity.listening("your commands"));
-        shardManager = builder.build();
+        ShardManager shardManager = builder.build();
         shardManager.addEventListener(new commandManager());
     }
 
