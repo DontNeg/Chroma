@@ -29,7 +29,6 @@ public class commandManager extends ListenerAdapter{
                     bgColor = getOption("background");
                 }catch(NullPointerException e){
                     bgColor = "no_color";}
-
                 event.reply(cleanUp.getMessage(bgColor,color,textOption)).queue();
             }
             case "modify" ->{

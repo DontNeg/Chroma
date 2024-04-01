@@ -8,9 +8,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class discordBot {
-
     public discordBot() {}
-
     public static void main(String[] args) {
         Dotenv config = Dotenv.configure().load();
         String token = config.get("TOKEN");
