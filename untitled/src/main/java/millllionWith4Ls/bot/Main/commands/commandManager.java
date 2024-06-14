@@ -14,7 +14,8 @@ import java.util.List;
 public class commandManager extends ListenerAdapter{
     SlashCommandInteractionEvent mainEvent;
 
-    private @SuppressWarnings("all") String getOption(String name){
+    @SuppressWarnings("DataFlowIssue")
+    private String getOption(String name){
         return mainEvent.getOption(name).getAsString();
     }
     @Override
