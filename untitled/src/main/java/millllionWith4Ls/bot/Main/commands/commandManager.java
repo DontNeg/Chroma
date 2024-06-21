@@ -52,6 +52,10 @@ public class commandManager extends ListenerAdapter{
                     modifierFour = "no_modifier";}
                 event.reply(cleanUp.modify(textOption,modifierOne,modifierTwo,modifierThree,modifierFour)).queue();
             }
+            case "header" ->{
+                String headerSize = getOption("header_size");
+                event.reply(cleanUp.header(textOption,headerSize)).queue();
+            }
         }
     }
     @Override
@@ -60,11 +64,14 @@ public class commandManager extends ListenerAdapter{
         String[] colors = new String[]{"gray","red","green","orange","blue","pink","cyan","white"};
         String[] bgColors = new String[]{"dark blue","orange","dark gray","gray","purple","light gray","white"};
         String[] mods = new String[]{"bold","italic","strikethrough","underline"};
+        String[] headerType = new String[]{"large", "medium", "small"};
+
         List<CommandData> commandData = new ArrayList<>();
 
         //Option Descriptions
         OptionData colorDescription = new OptionData(OptionType.STRING, "message", "message you want colorized", true);
         OptionData modDescription = new OptionData(OptionType.STRING, "message", "message you want modified", true);
+        OptionData headerDescription = new OptionData(OptionType.STRING, "message", "message you want to turn into a header", true);
 
         //Color Options
         OptionData colorOption = new OptionData(OptionType.STRING, "color", "Color you want the text to be", true);
@@ -75,6 +82,9 @@ public class commandManager extends ListenerAdapter{
         OptionData modifierOptionTwo = new OptionData(OptionType.STRING, "modifier_two", "Second modifier you want applied", false);
         OptionData modifierOptionThree = new OptionData(OptionType.STRING, "modifier_three", "Third modifier you want applied", false);
         OptionData modifierOptionFour = new OptionData(OptionType.STRING, "modifier_four", "Fourth modifier you want applied", false);
+
+        //Header Options
+        OptionData headerOptionOne = new OptionData(OptionType.STRING, "header_size", "Size of the header", true);
 
         //Choices
         for(String color: colors){
@@ -89,12 +99,17 @@ public class commandManager extends ListenerAdapter{
             modifierOptionThree.addChoice(mod,mod);
             modifierOptionFour.addChoice(mod,mod);
         }
+        for(String size: headerType){
+            headerOptionOne.addChoice(size,size);
+        }
 
         //Adding Commands
         commandData.add(Commands.slash("color","Generate text with a specific color")
                 .addOptions(colorDescription,colorOption,backgroundColorOption));
         commandData.add(Commands.slash("modify","Generate text with a specific modifier")
                 .addOptions(modDescription,modifierOptionOne,modifierOptionTwo,modifierOptionThree,modifierOptionFour));
+        commandData.add(Commands.slash("header", "Generate a header with a specific size")
+                .addOptions(headerDescription, headerOptionOne));
         event.getJDA().updateCommands().addCommands(commandData).queue();
     }
 }

@@ -53,4 +53,13 @@ public class cleanUp {
         }
         return msg;
     }
+    public static String header(String msg, String size){
+        String updatedSize = switch(size){
+            case "large" -> "#";
+            case "medium" -> "##";
+            case "small" -> "###";
+            default -> "";
+        };
+        return updatedSize + " " + msg;
+    }
 }

@@ -16,5 +16,4 @@ public class discordBot {
                 .setActivity(Activity.listening("your commands"));
         builder.build().addEventListener(new commandManager());
     }
-    //.enableIntents(GatewayIntent.MESSAGE_CONTENT)
 }
